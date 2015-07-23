@@ -8,10 +8,16 @@
 
 import UIKit
 
-let reuseIdentifier = "Cell"
+let reuseIdentifier = "collectionCell"
 
 class ContactsVC: UICollectionViewController {
-
+    
+    //Instance vars
+    
+    var retriever : ContactsRetriver!
+    
+    //methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -22,6 +28,12 @@ class ContactsVC: UICollectionViewController {
         self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        
+        self.retriever = ContactsRetriver()
+        self.retriever.fetchData()
     }
 
     override func didReceiveMemoryWarning() {

@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4B631EC41B6134C800046EE7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B631EC31B6134C800046EE7 /* AppDelegate.swift */; };
-		4B631EC61B6134C800046EE7 /* MasterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B631EC51B6134C800046EE7 /* MasterController.swift */; };
+		4B631EC61B6134C800046EE7 /* InitialVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B631EC51B6134C800046EE7 /* InitialVC.swift */; };
 		4B631EC91B6134C800046EE7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B631EC71B6134C800046EE7 /* Main.storyboard */; };
 		4B631ECB1B6134C900046EE7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B631ECA1B6134C900046EE7 /* Images.xcassets */; };
 		4B631ECE1B6134C900046EE7 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B631ECC1B6134C900046EE7 /* LaunchScreen.xib */; };
@@ -34,7 +34,7 @@
 		4B631EBE1B6134C800046EE7 /* Web Contacts with Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Web Contacts with Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B631EC21B6134C800046EE7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4B631EC31B6134C800046EE7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4B631EC51B6134C800046EE7 /* MasterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterController.swift; sourceTree = "<group>"; };
+		4B631EC51B6134C800046EE7 /* InitialVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialVC.swift; sourceTree = "<group>"; };
 		4B631EC81B6134C800046EE7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4B631ECA1B6134C900046EE7 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		4B631ECD1B6134C900046EE7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -134,7 +134,7 @@
 		4B631EE41B613EF600046EE7 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				4B631EC51B6134C800046EE7 /* MasterController.swift */,
+				4B631EC51B6134C800046EE7 /* InitialVC.swift */,
 				4B631EE51B61409600046EE7 /* ContactDetailVC.swift */,
 				4B631EE71B6140B500046EE7 /* ContactsVC.swift */,
 				4B631EF01B61431800046EE7 /* ContactsRetriver.swift */,
@@ -251,7 +251,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B631EC61B6134C800046EE7 /* MasterController.swift in Sources */,
+				4B631EC61B6134C800046EE7 /* InitialVC.swift in Sources */,
 				4B631EF11B61431800046EE7 /* ContactsRetriver.swift in Sources */,
 				4B631EC41B6134C800046EE7 /* AppDelegate.swift in Sources */,
 				4B631EE61B61409600046EE7 /* ContactDetailVC.swift in Sources */,
@@ -457,6 +457,7 @@
 				4B631EDF1B6134C900046EE7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4B631EE01B6134C900046EE7 /* Build configuration list for PBXNativeTarget "Web Contacts with SwiftTests" */ = {
 			isa = XCConfigurationList;
@@ -465,6 +466,7 @@
 				4B631EE21B6134C900046EE7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -50,7 +50,7 @@ class ContactsRetriver {
                     
                 }
                 
-                //println(self.book.description())
+                println(self.book.description())
                 
                 
             }
