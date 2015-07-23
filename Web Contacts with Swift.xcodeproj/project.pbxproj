@@ -17,6 +17,7 @@
 		4B631EE81B6140B500046EE7 /* ContactsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B631EE71B6140B500046EE7 /* ContactsVC.swift */; };
 		4B631EEA1B61410B00046EE7 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B631EE91B61410B00046EE7 /* Contact.swift */; };
 		4B631EEC1B61412300046EE7 /* ContactsBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B631EEB1B61412300046EE7 /* ContactsBook.swift */; };
+		4B631EF11B61431800046EE7 /* ContactsRetriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B631EF01B61431800046EE7 /* ContactsRetriver.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		4B631EE71B6140B500046EE7 /* ContactsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsVC.swift; sourceTree = "<group>"; };
 		4B631EE91B61410B00046EE7 /* Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		4B631EEB1B61412300046EE7 /* ContactsBook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsBook.swift; sourceTree = "<group>"; };
+		4B631EF01B61431800046EE7 /* ContactsRetriver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsRetriver.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +137,7 @@
 				4B631EC51B6134C800046EE7 /* MasterController.swift */,
 				4B631EE51B61409600046EE7 /* ContactDetailVC.swift */,
 				4B631EE71B6140B500046EE7 /* ContactsVC.swift */,
+				4B631EF01B61431800046EE7 /* ContactsRetriver.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -249,6 +252,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B631EC61B6134C800046EE7 /* MasterController.swift in Sources */,
+				4B631EF11B61431800046EE7 /* ContactsRetriver.swift in Sources */,
 				4B631EC41B6134C800046EE7 /* AppDelegate.swift in Sources */,
 				4B631EE61B61409600046EE7 /* ContactDetailVC.swift in Sources */,
 				4B631EE81B6140B500046EE7 /* ContactsVC.swift in Sources */,

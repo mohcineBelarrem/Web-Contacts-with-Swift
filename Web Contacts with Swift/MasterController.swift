@@ -9,10 +9,19 @@
 import UIKit
 
 class MasterController: UIViewController {
+    
+    
+    var retriever : ContactsRetriver!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        
+        retriever = ContactsRetriver()
+        
+        retriever.fetchData()
+        
     }
 
     override func didReceiveMemoryWarning() {
