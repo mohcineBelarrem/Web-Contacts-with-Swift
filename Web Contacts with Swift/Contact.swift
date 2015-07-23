@@ -26,7 +26,7 @@ struct Name {
     
     func description () -> String {
         
-        return self.title + " " + self.first + " " + self.last
+        return self.title.capitalizedString + ". " + self.first + " " + self.last
     }
     
 }

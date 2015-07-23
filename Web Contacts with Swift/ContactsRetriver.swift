@@ -50,9 +50,7 @@ class ContactsRetriver {
                     
                 }
                 
-                println(self.book.description())
-                
-                
+                // println(self.book.description())
             }
             
         } else {
@@ -65,6 +63,20 @@ class ContactsRetriver {
             
         }
         
+    }
+    
+    func fetchContactImage(contact : Contact) -> UIImage {
+        
+            let stringURL = contact.picture.large
+        
+            let url = NSURL(string: stringURL)
+        
+            let imageData = NSData(contentsOfURL: url!)
+            
+            let image = UIImage(data: imageData!)
+            
+            return image!
+    
     }
     
     

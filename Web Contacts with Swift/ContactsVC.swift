@@ -10,7 +10,7 @@ import UIKit
 
 let reuseIdentifier = "collectionCell"
 
-class ContactsVC: UICollectionViewController {
+class ContactsVC: UICollectionViewController,UICollectionViewDataSource,UICollectionViewDelegate {
     
     //Instance vars
     
@@ -24,18 +24,14 @@ class ContactsVC: UICollectionViewController {
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
-        // Register cell classes
-        self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
-        // Do any additional setup after loading the view.
-    }
-    
-    override func viewWillAppear(animated: Bool) {
         
+        self.title! = "All contacts"
+
         self.retriever = ContactsRetriver()
         self.retriever.fetchData()
+        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -55,52 +51,53 @@ class ContactsVC: UICollectionViewController {
 
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         //#warning Incomplete method implementation -- Return the number of sections
-        return 0
+        return 2
     }
-
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         //#warning Incomplete method implementation -- Return the number of items in the section
-        return 0
+        
+        if section == 0 {
+            
+            return 1
+
+        } else {
+            
+            return self.retriever.book.contactsList.count
+        }
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! UICollectionViewCell
+        
+        var cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! UICollectionViewCell
     
-        // Configure the cell
-    
+        var contactToBeShown : Contact!
+        
+        var titleLabel = cell.viewWithTag(100) as! UILabel
+        
+        var imageView  = cell.viewWithTag(101) as! UIImageView
+        
+        if indexPath.section == 0 {
+            
+            contactToBeShown = self.retriever.book.me
+            
+        } else {
+            
+            contactToBeShown = self.retriever.book.contactsList[indexPath.row]
+            
+        }
+        
+        titleLabel.text = contactToBeShown.name.description()
+        
+        imageView.image = self.retriever.fetchContactImage(contactToBeShown)
+        
+        cell.layer.borderColor = UIColor.blueColor().CGColor
+        
+        cell.layer.borderWidth = 2
+        
         return cell
     }
 
-    // MARK: UICollectionViewDelegate
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(collectionView: UICollectionView, shouldHighlightItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(collectionView: UICollectionView, shouldShowMenuForItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(collectionView: UICollectionView, canPerformAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) -> Bool {
-        return false
-    }
-
-    override func collectionView(collectionView: UICollectionView, performAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) {
-    
-    }
-    */
+ 
 
 }

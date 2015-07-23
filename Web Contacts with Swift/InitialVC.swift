@@ -24,21 +24,20 @@ class InitialVC : UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
-    
+        
         self.view.endEditing(true)
     }
-
     
     @IBAction func login(sender: AnyObject) {
-       
+        
         self.usernameField.resignFirstResponder()
         self.passwordField.resignFirstResponder()
         
@@ -47,10 +46,15 @@ class InitialVC : UIViewController {
             
             self.performSegueWithIdentifier("loginSegue", sender: self)
             
+        } else {
+         
+            var alertView = UIAlertView(title: "Login error", message: "Wrong username or password", delegate: nil, cancelButtonTitle: "Ok")
+            
+            alertView.show()
+            
         }
         
     }
-    
     
 }
 
