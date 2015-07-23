@@ -52,6 +52,7 @@ class ContactsRetriver {
                 
                 //println(self.book.description())
                 
+                
             }
             
         } else {
