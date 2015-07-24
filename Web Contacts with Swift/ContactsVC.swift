@@ -59,8 +59,9 @@ class ContactsVC: UICollectionViewController,UICollectionViewDataSource,UICollec
                     contactToBeShown = self.tabVC.retriever.book.contactsList[indexPath.row]
                     
                 }
-              
+                
                 contactDetailVC.contactToBeShown = contactToBeShown
+                contactDetailVC.contactToBeShownImage = self.tabVC.retriever.fetchContactImage(contactToBeShown)
             }
         }
     }
@@ -115,6 +116,27 @@ class ContactsVC: UICollectionViewController,UICollectionViewDataSource,UICollec
         return cell
     }
     
+    override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+        
+        var headerView : UICollectionReusableView!
+        
+        headerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "collectionHeader", forIndexPath: indexPath) as! UICollectionReusableView
+        
+        
+        let headerLabel = UILabel(frame: CGRectMake(25, 10, 200, 25))
+        
+        headerLabel.font = UIFont.systemFontOfSize(25)
+        
+        let sectionTitle =  (indexPath.section == 0) ? "Me" : "Other Contacts"
+        
+        headerLabel.text = sectionTitle
+        
+        headerView.addSubview(headerLabel)
+        
+        
+        
+        return headerView
+    }
     
     
 }

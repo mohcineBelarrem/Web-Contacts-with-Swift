@@ -52,7 +52,7 @@ struct Location {
     
     func description () -> String {
         
-        return self.street + " " + self.city + " " + self.state + " " + self.zip
+        return self.street + "\r\n" + self.city + "\r\n" + self.state + " " + self.zip
     }
 }
 

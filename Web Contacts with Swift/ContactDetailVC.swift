@@ -8,94 +8,153 @@
 
 import UIKit
 
-class ContactDetailVC: UITableViewController {
+class ContactDetailVC: UITableViewController,UITableViewDelegate,UITableViewDataSource {
     
     
     //Instance vars
     
     var contactToBeShown : Contact!
+    var contactToBeShownImage : UIImage!
     
     //methods
     override func viewDidLoad() {
         super.viewDidLoad()
-
-       // println(self.contactToBeShown.description())
+        
+        // println(self.contactToBeShown.description())
         
         self.title! = contactToBeShown.name.description()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     // MARK: - Table view data source
-
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Potentially incomplete method implementation.
         // Return the number of sections.
-        return 0
+        return 9
     }
-
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return 0
+        return 1
     }
-
-    /*
+    
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! UITableViewCell
-
-        // Configure the cell...
-
+        
+        var cellReuseIdentifier : String!
+        var cell : UITableViewCell!
+        
+        
+        
+        switch indexPath.section {
+            
+        case 0 :
+            
+            cellReuseIdentifier = "identityTableCell"
+            cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier, forIndexPath: indexPath) as! UITableViewCell
+            
+            
+            let nameLabel = cell.viewWithTag(200) as! UILabel
+            
+            nameLabel.text = self.contactToBeShown.name.description()
+            
+            let imageView = cell.viewWithTag(201) as! UIImageView
+            
+            imageView.image = self.contactToBeShownImage
+            
+            
+        case 2 :
+            
+            cellReuseIdentifier = "addressTableCell"
+            cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier, forIndexPath: indexPath) as! UITableViewCell
+            
+            let addressLabel = cell.viewWithTag(202) as! UILabel
+            
+            addressLabel.numberOfLines = 0
+            
+            addressLabel.text = self.contactToBeShown.location.description()
+            
+            
+        case 1,3,4,5,6,7,8:
+            
+            cellReuseIdentifier = "normalTableCell"
+            cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier, forIndexPath: indexPath) as! UITableViewCell
+            
+            let addressLabel = cell.viewWithTag(203) as! UILabel
+            
+            let contactToBeShowArray = ["",self.contactToBeShown.gender,"",self.contactToBeShown.email,self.contactToBeShown.cell,self.contactToBeShown.phone,
+                                        self.contactToBeShown.ssn,self.contactToBeShown.username,self.contactToBeShown.password]
+            
+            addressLabel.numberOfLines = 0
+            
+            addressLabel.text = contactToBeShowArray[indexPath.section]
+            
+        default:
+            break
+            
+            
+        }
+        
+        
         return cell
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the specified item to be editable.
-        return true
+    
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        
+        var headerTitle = ""
+        
+        switch section {
+            
+        case 0 :
+            headerTitle = "Identity"
+        case 1 :
+            headerTitle = "gender"
+        case 2 :
+            headerTitle = "Address"
+        case 3 :
+            headerTitle = "email"
+        case 4 :
+            headerTitle = "cell"
+        case 5 :
+            headerTitle = "phone"
+        case 6 :
+            headerTitle = "Social Security Number"
+        case 7 :
+            headerTitle = "username"
+        case 8 :
+            headerTitle = "password"
+            
+        default:
+            
+            headerTitle = ""
+        }
+        
+        return headerTitle
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        
+        if indexPath.section==0 {
+            
+            return  150.0
+            
+        } else if indexPath.section == 2 {
+            
+            return 130.0
+        } else {
+            
+            return 60.0
+        }
+        
+        
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
+    
 }
