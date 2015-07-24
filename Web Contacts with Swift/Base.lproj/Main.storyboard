@@ -72,7 +72,7 @@
         <!--Search-->
         <scene sceneID="qXT-dQ-MHd">
             <objects>
-                <viewController title="Search" id="TYg-7s-pzO" sceneMemberID="viewController">
+                <viewController title="Search" id="TYg-7s-pzO" customClass="SearchVC" customModule="Web_Contacts_with_Swift" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qAX-Cm-yB4"/>
                         <viewControllerLayoutGuide type="bottom" id="RM2-JC-waf"/>
@@ -88,10 +88,10 @@
             </objects>
             <point key="canvasLocation" x="1270" y="72"/>
         </scene>
-        <!--Tab Controller-->
+        <!--Tab-->
         <scene sceneID="b3m-tt-8TI">
             <objects>
-                <tabBarController title="Tab Controller" id="EN9-M6-kcM" sceneMemberID="viewController">
+                <tabBarController title="Tab Controller" id="EN9-M6-kcM" userLabel="Tab" customClass="TabVC" customModule="Web_Contacts_with_Swift" customModuleProvider="target" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="hqt-cs-PGp">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>

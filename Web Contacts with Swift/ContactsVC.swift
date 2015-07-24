@@ -14,7 +14,7 @@ class ContactsVC: UICollectionViewController,UICollectionViewDataSource,UICollec
     
     //Instance vars
     
-    var retriever : ContactsRetriver!
+    var tabVC : TabVC!
     
     //methods
     
@@ -24,11 +24,9 @@ class ContactsVC: UICollectionViewController,UICollectionViewDataSource,UICollec
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
-        
         self.title! = "All contacts"
 
-        self.retriever = ContactsRetriver()
-        self.retriever.fetchData()
+        self.tabVC = self.tabBarController as! TabVC
         
     }
     
@@ -63,7 +61,7 @@ class ContactsVC: UICollectionViewController,UICollectionViewDataSource,UICollec
 
         } else {
             
-            return self.retriever.book.contactsList.count
+            return self.tabVC.retriever.book.contactsList.count
         }
     }
 
@@ -79,17 +77,17 @@ class ContactsVC: UICollectionViewController,UICollectionViewDataSource,UICollec
         
         if indexPath.section == 0 {
             
-            contactToBeShown = self.retriever.book.me
+            contactToBeShown = self.tabVC.retriever.book.me
             
         } else {
             
-            contactToBeShown = self.retriever.book.contactsList[indexPath.row]
+            contactToBeShown = self.tabVC.retriever.book.contactsList[indexPath.row]
             
         }
         
         titleLabel.text = contactToBeShown.name.description()
         
-        imageView.image = self.retriever.fetchContactImage(contactToBeShown)
+        imageView.image = self.tabVC.retriever.fetchContactImage(contactToBeShown)
         
         cell.layer.borderColor = UIColor.blueColor().CGColor
         

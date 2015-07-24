@@ -44,15 +44,17 @@ class InitialVC : UIViewController {
         
         if  self.usernameField.text == "test" && self.passwordField.text == "test" {
             
-            self.performSegueWithIdentifier("loginSegue", sender: self)
             
         } else {
          
-            var alertView = UIAlertView(title: "Login error", message: "Wrong username or password", delegate: nil, cancelButtonTitle: "Ok")
+       //     var alertView = UIAlertView(title: "Login error", message: "Wrong username or password", delegate: nil, cancelButtonTitle: "Ok")
             
-            alertView.show()
-            
+       //     alertView.show()
+       
         }
+        
+        
+        self.performSegueWithIdentifier("loginSegue", sender: self)
         
     }
     
