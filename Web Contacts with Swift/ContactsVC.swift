@@ -62,6 +62,7 @@ class ContactsVC: UICollectionViewController,UICollectionViewDataSource,UICollec
                 
                 contactDetailVC.contactToBeShown = contactToBeShown
                 contactDetailVC.contactToBeShownImage = self.tabVC.retriever.fetchContactImage(contactToBeShown)
+                contactDetailVC.myName = self.tabVC.retriever.book.me.name.description()
             }
         }
     }

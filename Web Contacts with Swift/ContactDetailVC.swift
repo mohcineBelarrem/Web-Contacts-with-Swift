@@ -13,8 +13,12 @@ class ContactDetailVC: UITableViewController,UITableViewDelegate,UITableViewData
     
     //Instance vars
     
+    var myName           : String!
     var contactToBeShown : Contact!
     var contactToBeShownImage : UIImage!
+    
+    var isMySelf  : Bool!
+    
     
     //methods
     override func viewDidLoad() {
@@ -22,7 +26,11 @@ class ContactDetailVC: UITableViewController,UITableViewDelegate,UITableViewData
         
         // println(self.contactToBeShown.description())
         
-        self.title! = contactToBeShown.name.description()
+        
+        self.isMySelf = self.myName == contactToBeShown.name.description()
+        
+        
+        self.title! = self.isMySelf == true  ? "Me" : contactToBeShown.name.description()
     }
     
     override func didReceiveMemoryWarning() {
@@ -86,21 +94,27 @@ class ContactDetailVC: UITableViewController,UITableViewDelegate,UITableViewData
             cellReuseIdentifier = "normalTableCell"
             cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier, forIndexPath: indexPath) as! UITableViewCell
             
-            let addressLabel = cell.viewWithTag(203) as! UILabel
+            let infoLabel = cell.viewWithTag(203) as! UILabel
             
-            let contactToBeShowArray = ["",self.contactToBeShown.gender,"",self.contactToBeShown.email,self.contactToBeShown.cell,self.contactToBeShown.phone,
+            var contactToBeShowArray = ["",self.contactToBeShown.gender,"",self.contactToBeShown.email,self.contactToBeShown.cell,self.contactToBeShown.phone,
                                         self.contactToBeShown.ssn,self.contactToBeShown.username,self.contactToBeShown.password]
             
-            addressLabel.numberOfLines = 0
             
-            addressLabel.text = contactToBeShowArray[indexPath.section]
+            if self.isMySelf == false {
+                
+                contactToBeShowArray[6] = "**************"
+                //contactToBeShowArray[7] = "**************"
+                contactToBeShowArray[8] = "**************"
+            }
+            
+            infoLabel.numberOfLines = 0
+            
+            infoLabel.text = contactToBeShowArray[indexPath.section]
             
         default:
             break
             
-            
         }
-        
         
         return cell
     }
