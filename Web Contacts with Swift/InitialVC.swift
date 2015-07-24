@@ -17,11 +17,15 @@ class InitialVC : UIViewController {
     
     @IBOutlet var passwordField: UITextField!
     
+    var retriever : ContactsRetriver!
+    
     //methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        self.retriever = ContactsRetriver()
         
     }
     
@@ -29,7 +33,6 @@ class InitialVC : UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         
@@ -44,19 +47,32 @@ class InitialVC : UIViewController {
         
         if  self.usernameField.text == "test" && self.passwordField.text == "test" {
             
+              //startAnimating
+            
+              self.retriever.fetchData()
+          
+              self.performSegueWithIdentifier("loginSegue", sender: self)
             
         } else {
          
-       //     var alertView = UIAlertView(title: "Login error", message: "Wrong username or password", delegate: nil, cancelButtonTitle: "Ok")
-            
-       //     alertView.show()
+            var alertView = UIAlertView(title: "Login error", message: "Wrong username or password", delegate: nil, cancelButtonTitle: "Ok")
+            alertView.show()
        
         }
-        
-        
-        self.performSegueWithIdentifier("loginSegue", sender: self)
-        
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if segue.identifier == "loginSegue" {
+            
+            let tabVC = segue.destinationViewController as! TabVC
+            
+            tabVC.retriever = self.retriever
+            
+            //finish Animating
+        }
+    }
+
     
 }
 

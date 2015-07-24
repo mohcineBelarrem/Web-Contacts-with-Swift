@@ -15,18 +15,10 @@ class TabVC: UITabBarController,UITabBarControllerDelegate {
     
     var retriever : ContactsRetriver!
     
-    
-    
     override func viewDidLoad() {
 
         super.viewDidLoad()
 
-        self.retriever = ContactsRetriver()
-        self.retriever.fetchData()
-        
-      //  println(self.viewControllers!.count)
-     //    println("Tab bar")
-        
     }
 
     override func didReceiveMemoryWarning() {
