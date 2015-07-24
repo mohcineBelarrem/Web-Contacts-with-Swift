@@ -24,10 +24,8 @@ class TabVC: UITabBarController,UITabBarControllerDelegate {
         self.retriever = ContactsRetriver()
         self.retriever.fetchData()
         
-        
-        println(self.viewControllers!.count)
-        
-        println("Tab bar") 
+      //  println(self.viewControllers!.count)
+     //    println("Tab bar")
         
     }
 

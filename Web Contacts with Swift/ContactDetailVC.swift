@@ -9,15 +9,19 @@
 import UIKit
 
 class ContactDetailVC: UITableViewController {
-
+    
+    
+    //Instance vars
+    
+    var contactToBeShown : Contact!
+    
+    //methods
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+       // println(self.contactToBeShown.description())
+        
+        self.title! = contactToBeShown.name.description()
     }
 
     override func didReceiveMemoryWarning() {

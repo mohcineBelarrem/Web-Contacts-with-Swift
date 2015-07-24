@@ -23,7 +23,6 @@ class SearchVC: UIViewController {
         
          self.tabVC = self.tabBarController as! TabVC
         
-        
     }
 
     override func didReceiveMemoryWarning() {
