@@ -19,14 +19,23 @@ class InitialVC : UIViewController {
     
     var retriever : ContactsRetriver!
     
+    @IBOutlet var activityIndicator: UIActivityIndicatorView!
+    
     //methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        
         self.retriever = ContactsRetriver()
         
+    }
+    
+    
+    override func viewDidAppear(animated: Bool) {
+    
+        self.activityIndicator.hidden = true
     }
     
     override func didReceiveMemoryWarning() {
@@ -44,21 +53,29 @@ class InitialVC : UIViewController {
         self.usernameField.resignFirstResponder()
         self.passwordField.resignFirstResponder()
         
-        
         if  self.usernameField.text == "test" && self.passwordField.text == "test" {
             
-              //startAnimating
+            self.activityIndicator.hidden = false
             
-              self.retriever.fetchData()
-          
-              self.performSegueWithIdentifier("loginSegue", sender: self)
+            self.retriever.fetchData()
+            
+            if( self.retriever.couldLoadData ) {
+            
+            self.performSegueWithIdentifier("loginSegue", sender: self)
+                
+            } else {
+                
+                self.activityIndicator.hidden = true
+            }
+            
             
         } else {
-         
+            
             var alertView = UIAlertView(title: "Login error", message: "Wrong username or password", delegate: nil, cancelButtonTitle: "Ok")
             alertView.show()
-       
+            
         }
+        
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -69,10 +86,20 @@ class InitialVC : UIViewController {
             
             tabVC.retriever = self.retriever
             
-            //finish Animating
         }
     }
-
+    
+    
+    func startAnimating(){
+        
+        
+        var visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Light)) as UIVisualEffectView
+        
+        visualEffectView.frame = self.view.bounds
+        
+        self.view.addSubview(visualEffectView)
+    }
+    
     
 }
 

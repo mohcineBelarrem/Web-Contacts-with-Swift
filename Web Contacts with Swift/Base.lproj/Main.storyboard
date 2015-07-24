@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Z7q-mH-1XN">
-                                <rect key="frame" x="175" y="126" width="250" height="30"/>
+                                <rect key="frame" x="175" y="88" width="250" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="250" id="VB1-lh-JFe"/>
                                 </constraints>
@@ -27,13 +27,13 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qvo-y4-kPh">
-                                <rect key="frame" x="175" y="164" width="250" height="30"/>
+                                <rect key="frame" x="175" y="136" width="250" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dr5-ch-NDg">
-                                <rect key="frame" x="246" y="234" width="108" height="48"/>
-                                <color key="backgroundColor" red="0.3084526158" green="0.36673350069999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="246" y="186" width="108" height="48"/>
+                                <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="108" id="Sgf-LY-zEt"/>
                                     <constraint firstAttribute="height" constant="48" id="bDV-VW-9s3"/>
@@ -47,19 +47,26 @@
                                     <action selector="login:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="GWd-D5-MVX"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="e8y-Ve-07B">
+                                <rect key="frame" x="282" y="427" width="37" height="37"/>
+                                <color key="color" red="0.0" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.96656468531468531" green="0.98328234265734271" blue="0.95375017139723017" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="Z7q-mH-1XN" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="405-XW-kPy"/>
                             <constraint firstItem="qvo-y4-kPh" firstAttribute="trailing" secondItem="Z7q-mH-1XN" secondAttribute="trailing" id="MNA-ri-m55"/>
-                            <constraint firstItem="qvo-y4-kPh" firstAttribute="top" secondItem="Z7q-mH-1XN" secondAttribute="bottom" constant="8" symbolic="YES" id="MXT-Om-MR9"/>
+                            <constraint firstItem="qvo-y4-kPh" firstAttribute="top" secondItem="Z7q-mH-1XN" secondAttribute="bottom" constant="18" id="MXT-Om-MR9"/>
                             <constraint firstItem="dr5-ch-NDg" firstAttribute="centerX" secondItem="qvo-y4-kPh" secondAttribute="centerX" id="Snb-mF-bQH"/>
-                            <constraint firstItem="Z7q-mH-1XN" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="106" id="YZw-Qx-D7M"/>
+                            <constraint firstItem="Z7q-mH-1XN" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="68" id="YZw-Qx-D7M"/>
+                            <constraint firstItem="e8y-Ve-07B" firstAttribute="centerX" secondItem="dr5-ch-NDg" secondAttribute="centerX" id="aru-QW-01X"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="e8y-Ve-07B" secondAttribute="bottom" constant="136" id="bes-QY-El5"/>
                             <constraint firstItem="qvo-y4-kPh" firstAttribute="leading" secondItem="Z7q-mH-1XN" secondAttribute="leading" id="uFo-Yf-jZa"/>
-                            <constraint firstItem="dr5-ch-NDg" firstAttribute="top" secondItem="qvo-y4-kPh" secondAttribute="bottom" constant="40" id="v2D-aG-tpQ"/>
+                            <constraint firstItem="dr5-ch-NDg" firstAttribute="top" secondItem="qvo-y4-kPh" secondAttribute="bottom" constant="20" id="v2D-aG-tpQ"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="e8y-Ve-07B" id="A3w-M1-hBv"/>
                         <outlet property="passwordField" destination="qvo-y4-kPh" id="M6h-UF-iWx"/>
                         <outlet property="usernameField" destination="Z7q-mH-1XN" id="YBr-Vs-nOG"/>
                         <segue destination="EN9-M6-kcM" kind="show" identifier="loginSegue" id="qns-Qd-m7I"/>

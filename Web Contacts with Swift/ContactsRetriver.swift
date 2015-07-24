@@ -13,12 +13,14 @@ class ContactsRetriver {
     
     var book : ContactsBook
     
+    var couldLoadData = false
+    
     init() {
         
         self.book = ContactsBook()
     }
     
-    func fetchData() {
+    func fetchData()  {
         
         //Inspired from
         //http://www.learnswift.io/blog/2014/7/30/parsing-json-in-swift
@@ -47,10 +49,11 @@ class ContactsRetriver {
                     
                     self.book.contactsList.append(contactObject)
                     
-                    
                 }
                 
                 // println(self.book.description())
+                
+                self.couldLoadData = true
             }
             
         } else {
