@@ -117,6 +117,16 @@ class SearchVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UISea
         
       //  self.filtredContacts = array as! [Contact]
         
+        self.filtredContacts = self.allContacts.filter({ (comparedContact : Contact) -> Bool in
+        
+        let query = searchController.searchBar.text
+        let name  = comparedContact.name.description()
+            
+            return name.rangeOfString(query) != nil
+        
+        })
+        
+        
         self.tableView.reloadData()
     }
     
