@@ -8,11 +8,18 @@
 
 import UIKit
 
-class SearchVC: UIViewController {
+class SearchVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UISearchResultsUpdating {
  
     //Instance vars
     
     var tabVC : TabVC!
+    
+    @IBOutlet var tableView: UITableView!
+    
+    
+    var allContacts = [Contact]()
+    var filtredContacts = [Contact]()
+    var resultSearchController = UISearchController()
     
     //methods
     
@@ -23,22 +30,105 @@ class SearchVC: UIViewController {
         
          self.tabVC = self.tabBarController as! TabVC
         
+         self.allContacts.append(self.tabVC.retriever.book.me)
+        
+         self.allContacts += self.tabVC.retriever.book.contactsList
+        
+        
+        self.resultSearchController = ({
+            let controller = UISearchController(searchResultsController: nil)
+            
+            controller.searchResultsUpdater = self
+            controller.dimsBackgroundDuringPresentation = false
+            
+            controller.searchBar.sizeToFit()
+            
+            controller.searchBar.placeholder = "Search for Contacts"
+            
+            //li tazyine
+            controller.searchBar.layer.borderWidth = 1
+            controller.searchBar.layer.borderColor = UIColor(red: 200/255, green: 200/255, blue: 205/255, alpha: 1).CGColor
+            
+            
+            self.tableView.tableHeaderView = controller.searchBar
+            
+            return controller
+        })()
+        
+        
+        self.tableView.reloadData()
+        
     }
-
+ 
+     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        // 1
+        // Return the number of sections.
+        return 1
+    }
+    
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 100.0
+    }
+   
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // 2
+        if (self.resultSearchController.active) {
+            return self.filtredContacts.count
+        }
+        else {
+            return self.allContacts.count
+        }
+    }
+    
+    
+     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("searchResultCell", forIndexPath: indexPath) as! UITableViewCell
+        
+        var contactToBeDisplayed : Contact!
+        
+        // 3
+        if (self.resultSearchController.active) {
+            
+            contactToBeDisplayed = self.filtredContacts[indexPath.row]
+        }
+        else {
+            contactToBeDisplayed = self.allContacts[indexPath.row]
+        }
+        
+        cell.textLabel!.text = contactToBeDisplayed.name.description()
+       
+        cell.imageView!.image = self.tabVC.retriever.fetchContactImage(contactToBeDisplayed)
+        cell.imageView!.layer.cornerRadius = 25
+        cell.imageView!.clipsToBounds = true
+        
+        return cell
+    }
+    
+    
+    
+    func updateSearchResultsForSearchController(searchController: UISearchController){
+        
+        self.filtredContacts.removeAll(keepCapacity: false)
+        
+       // let searchPredicate = NSPredicate(format: "SELF CONTAINS[c] %@", searchController.searchBar.text)
+        
+       // let array = (self.allContacts as NSArray).filteredArrayUsingPredicate(searchPredicate)
+        
+      //  self.filtredContacts = array as! [Contact]
+        
+        self.tableView.reloadData()
+    }
+    
+    
+    
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

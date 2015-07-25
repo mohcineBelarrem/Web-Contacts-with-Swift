@@ -70,7 +70,7 @@ class ContactsRetriver {
     
     func fetchContactImage(contact : Contact) -> UIImage {
         
-            let stringURL = contact.picture.large
+            let stringURL = contact.picture.thumbnail
         
             let url = NSURL(string: stringURL)
         
