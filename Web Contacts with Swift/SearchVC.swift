@@ -68,7 +68,7 @@ class SearchVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UISea
     
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 100.0
+        return 150.0
     }
    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -96,10 +96,11 @@ class SearchVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UISea
             contactToBeDisplayed = self.allContacts[indexPath.row]
         }
         
-        cell.textLabel!.text = contactToBeDisplayed.name.description()
+        cell.textLabel!.text = contactToBeDisplayed.description()
+        cell.textLabel!.numberOfLines = 0
        
         cell.imageView!.image = self.tabVC.retriever.fetchContactImage(contactToBeDisplayed)
-        cell.imageView!.layer.cornerRadius = 25
+        cell.imageView!.layer.cornerRadius = 35
         cell.imageView!.clipsToBounds = true
         
         return cell
@@ -120,7 +121,7 @@ class SearchVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UISea
         self.filtredContacts = self.allContacts.filter({ (comparedContact : Contact) -> Bool in
         
         let query = searchController.searchBar.text
-        let name  = comparedContact.name.description()
+        let name  = comparedContact.description()
             
             return name.rangeOfString(query) != nil
         

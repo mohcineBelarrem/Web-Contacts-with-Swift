@@ -113,7 +113,7 @@ class Contact {
     
     func description () -> String {
         
-        return self.name.description() + " " + self.gender + " " + self.location.description() + " " + self.email + " " + self.phone + " " + self.cell
+        return self.name.description() + "\r\n" + self.location.description() + "\r\n" + self.email + "\r\nphone: " + self.phone + "\r\ncell: " + self.cell
     }
     
 }
