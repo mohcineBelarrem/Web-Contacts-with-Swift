@@ -8,18 +8,22 @@
 
 import UIKit
 
+
+/*This is the VC responsible for the "HomeScreen" In which the user can enter a username and a password and then log in*/
+
+
 class InitialVC : UIViewController {
     
+    // instance Vars
+    var retriever : ContactsRetriver!
     
-    // instance Vars...
-    
+    //Outlets
     @IBOutlet var usernameField: UITextField!
     
     @IBOutlet var passwordField: UITextField!
     
-    var retriever : ContactsRetriver!
-    
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
+    
     
     //methods
     
@@ -27,27 +31,43 @@ class InitialVC : UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        
+        //First thing we do we init the retriever
         self.retriever = ContactsRetriver()
         
     }
     
-    
     override func viewDidAppear(animated: Bool) {
-    
+        
+        //Everytime the view appears we hide the loader cause it dosent make sense to have it from the start
         self.activityIndicator.hidden = true
+    }
+    
+    
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        
+        //In case the user touched a blank area of the screen we should hide the keyboard
+        self.view.endEditing(true)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    
+    //Passing data to the tabVC just after the segue is triggered
+        
+        if segue.identifier == "loginSegue" {
+            
+            let tabVC = segue.destinationViewController as! TabVC
+            
+            tabVC.retriever = self.retriever
+            
+        }
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
-        
-        self.view.endEditing(true)
-    }
-    
+   
+    //Actions
     @IBAction func login(sender: AnyObject) {
         
         self.usernameField.resignFirstResponder()
@@ -55,11 +75,16 @@ class InitialVC : UIViewController {
         
         if  self.usernameField.text == "test" && self.passwordField.text == "test" {
             
+            //In case th user typed the right username and password we start fetching data
+            
             self.activityIndicator.hidden = false
             
             self.retriever.fetchData()
             
             if( self.retriever.couldLoadData ) {
+                
+            //We only segue to The other scenes if we could load data
+            //Cause with no data the other scenes would make the app crash 
             
             self.performSegueWithIdentifier("loginSegue", sender: self)
                 
@@ -78,27 +103,6 @@ class InitialVC : UIViewController {
         
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
-        if segue.identifier == "loginSegue" {
-            
-            let tabVC = segue.destinationViewController as! TabVC
-            
-            tabVC.retriever = self.retriever
-            
-        }
-    }
-    
-    
-    func startAnimating(){
-        
-        
-        var visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Light)) as UIVisualEffectView
-        
-        visualEffectView.frame = self.view.bounds
-        
-        self.view.addSubview(visualEffectView)
-    }
     
     
 }

@@ -8,7 +8,10 @@
 
 import UIKit
 
-let reuseIdentifier = "collectionCell"
+//let reuseIdentifier = "collectionCell"
+
+/*The class responsible for displaying the contatcts in a collection view */
+
 
 class ContactsVC: UICollectionViewController,UICollectionViewDataSource,UICollectionViewDelegate {
     
@@ -21,9 +24,7 @@ class ContactsVC: UICollectionViewController,UICollectionViewDataSource,UICollec
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
+        //Title of the navigationBar since this VC is embeded with CDVC in a NavigationBarController
         self.title! = "All contacts"
         
         self.tabVC = self.tabBarController as! TabVC
@@ -43,12 +44,15 @@ class ContactsVC: UICollectionViewController,UICollectionViewDataSource,UICollec
         
         if segue.identifier == "detailSegue" {
             
+            //In case the usr touched a cell we pass it's informations to the CDVC so that it can show 
+            //the contact in detail
+            
             let contactDetailVC = segue.destinationViewController as! ContactDetailVC
             let cell = sender as! UICollectionViewCell
             
             if let indexPath = self.collectionView!.indexPathForCell(cell) {
                 
-                var contactToBeShown : Contact!
+                let contactToBeShown : Contact!
                 
                 if indexPath.section == 0 {
                     
@@ -57,7 +61,6 @@ class ContactsVC: UICollectionViewController,UICollectionViewDataSource,UICollec
                 } else {
                     
                     contactToBeShown = self.tabVC.retriever.book.contactsList[indexPath.row]
-                    
                 }
                 
                 contactDetailVC.contactToBeShown = contactToBeShown
@@ -78,17 +81,21 @@ class ContactsVC: UICollectionViewController,UICollectionViewDataSource,UICollec
         
         if section == 0 {
             
+            //"Me" Section
             return 1
             
         } else {
             
+            //Other Contacts Section
             return self.tabVC.retriever.book.contactsList.count
         }
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
-        var cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! UICollectionViewCell
+        //Configuring the collectionView cells
+        
+        var cell = collectionView.dequeueReusableCellWithReuseIdentifier("collectionCell", forIndexPath: indexPath) as! UICollectionViewCell
         
         var contactToBeShown : Contact!
         
@@ -118,6 +125,8 @@ class ContactsVC: UICollectionViewController,UICollectionViewDataSource,UICollec
     }
     
     override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+        
+        //setting the headers for the collectionView
         
         var headerView : UICollectionReusableView!
         

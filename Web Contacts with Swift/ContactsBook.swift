@@ -24,12 +24,12 @@ class ContactsBook {
         
         var bookString = ""
         
+        bookString += "\r\n" + self.me.description()
+        
         for contact in self.contactsList {
             
             bookString += "\r\n" + contact.description()
         }
-        
-        bookString += "\r\n" + self.me.description()
         
         return bookString
     }

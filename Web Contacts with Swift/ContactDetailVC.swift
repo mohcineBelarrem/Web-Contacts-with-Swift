@@ -19,17 +19,14 @@ class ContactDetailVC: UITableViewController,UITableViewDelegate,UITableViewData
     
     var isMySelf  : Bool!
     
-    
     //methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // println(self.contactToBeShown.description())
-        
-        
+        //we wanna know if the contact is myself so that to display senstive data or not
         self.isMySelf = self.myName == contactToBeShown.name.description()
         
-        
+        //if the contact is me we display "Me" in the tile otherwise we display his name
         self.title! = self.isMySelf == true  ? "Me" : contactToBeShown.name.description()
     }
     
@@ -41,24 +38,21 @@ class ContactDetailVC: UITableViewController,UITableViewDelegate,UITableViewData
     // MARK: - Table view data source
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Potentially incomplete method implementation.
         // Return the number of sections.
         return 9
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete method implementation.
         // Return the number of rows in the section.
         return 1
     }
     
-    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        //configuring the cell
         
         var cellReuseIdentifier : String!
         var cell : UITableViewCell!
-        
-        
         
         switch indexPath.section {
             
@@ -67,7 +61,6 @@ class ContactDetailVC: UITableViewController,UITableViewDelegate,UITableViewData
             cellReuseIdentifier = "identityTableCell"
             cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier, forIndexPath: indexPath) as! UITableViewCell
             
-            
             let nameLabel = cell.viewWithTag(200) as! UILabel
             
             nameLabel.text = self.contactToBeShown.name.description()
@@ -75,7 +68,6 @@ class ContactDetailVC: UITableViewController,UITableViewDelegate,UITableViewData
             let imageView = cell.viewWithTag(201) as! UIImageView
             
             imageView.image = self.contactToBeShownImage
-            
             
         case 2 :
             
@@ -88,7 +80,6 @@ class ContactDetailVC: UITableViewController,UITableViewDelegate,UITableViewData
             
             addressLabel.text = self.contactToBeShown.location.description()
             
-            
         case 1,3,4,5,6,7,8:
             
             cellReuseIdentifier = "normalTableCell"
@@ -99,6 +90,7 @@ class ContactDetailVC: UITableViewController,UITableViewDelegate,UITableViewData
             var contactToBeShowArray = ["",self.contactToBeShown.gender,"",self.contactToBeShown.email,self.contactToBeShown.cell,self.contactToBeShown.phone,
                                         self.contactToBeShown.ssn,self.contactToBeShown.username,self.contactToBeShown.password]
             
+            //hiding the sensitive data in case Me != contact
             
             if self.isMySelf == false {
                 
@@ -119,8 +111,9 @@ class ContactDetailVC: UITableViewController,UITableViewDelegate,UITableViewData
         return cell
     }
     
-    
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        
+        //configuring the different headers titles of the tableView
         
         var headerTitle = ""
         
@@ -155,6 +148,8 @@ class ContactDetailVC: UITableViewController,UITableViewDelegate,UITableViewData
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
+        //Height of the tableCells depending on the section
+        
         if indexPath.section==0 {
             
             return  150.0
@@ -166,9 +161,5 @@ class ContactDetailVC: UITableViewController,UITableViewDelegate,UITableViewData
             
             return 60.0
         }
-        
-        
     }
-    
-    
 }

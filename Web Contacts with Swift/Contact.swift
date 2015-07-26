@@ -9,6 +9,10 @@
 import Foundation
 
 
+
+//The basic class of the model
+
+
 struct Name {
   
     var title : String
